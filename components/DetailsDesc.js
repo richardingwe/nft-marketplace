@@ -48,7 +48,26 @@ const DetailsDesc = ({ data }) => {
                             lineHeight: SIZES.large
                         }}
                     >
-                        {data.description}
+                        {text}
+                        {!readMore && <Text>...</Text>}
+                        <Text
+                            onPress={() => {
+                                if (!readMore) {
+                                    setText(data.description);
+                                    setReadMore(true);
+                                } else {
+                                    setText(data.description.slice(0, 100));
+                                    setReadMore(false);
+                                }
+                            }}
+                            style={{
+                                fontSize: SIZES.small,
+                                fontFamily: FONTS.semiBold,
+                                color: COLORS.primary,
+                            }}
+                        >
+                            {readMore ? ' Show Less' : 'Read More'}
+                        </Text>
                     </Text>
                 </View>
             </View>
